@@ -51,9 +51,9 @@ def post_request1(state_id):
         abort(400, 'Not a JSON')
     if 'name' not in kwargs:
         abort(400, 'Missing name')
-    state = kwargs['state_id']
+    """state = kwargs['state_id']
     if state not in storage.get(State.__init__, state_id):
-        abort(404)
+        abort(404)"""
     get_city = City(**kwargs)
     setattr(get_city, 'state_id', state_id)
     storage.new(get_city)
