@@ -47,6 +47,9 @@ def delete_by_id1(city_id):
                  strict_slashes=False)
 def post_request1(state_id):
     """ Posts a 'class' object """
+    state = storage.get(State.__name__, state_id)
+    if not state:
+        abort(404)
     kwargs = request.get_json()
     if not kwargs:
         abort(400, 'Not a JSON')
