@@ -71,6 +71,9 @@ def put_request1(city_id):
     kwargs = request.get_json()
     if not kwargs:
         abort(400, 'Not a JSON')
+    city = kwargs['city_id']
+    if city not in storage.get(City.__name__, city_id):
+        abort(404)
     for k, v in kwargs.items():
         if k != 'id' and k != 'state_id'\
                 and k != 'created_at' and k != 'updated_at':
