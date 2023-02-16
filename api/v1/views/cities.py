@@ -39,7 +39,8 @@ def delete_by_id1(city_id):
 
     get_city.delete()
     storage.save()
-    return jsonify({}), 200
+    emp = {}
+    return jsonify(emp), 200
 
 
 @app_views.route('/states/<state_id>/cities', methods=['POST'],
@@ -51,9 +52,9 @@ def post_request1(state_id):
         abort(400, 'Not a JSON')
     if 'name' not in kwargs:
         abort(400, 'Missing name')
-    """state = kwargs['state_id']
-    if state not in storage.get(State.__init__, state_id):
-        abort(404)"""
+    states = kwargs['state_id']
+    if states not in storage.get(State.__name__, state_id):
+        abort(404)
     get_city = City(**kwargs)
     setattr(get_city, 'state_id', state_id)
     storage.new(get_city)
@@ -71,9 +72,7 @@ def put_request1(city_id):
     kwargs = request.get_json()
     if not kwargs:
         abort(400, 'Not a JSON')
-    city = kwargs['city_id']
-    if city not in storage.get(City.__name__, city_id):
-        abort(404)
+
     for k, v in kwargs.items():
         if k != 'id' and k != 'state_id'\
                 and k != 'created_at' and k != 'updated_at':
