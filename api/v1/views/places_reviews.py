@@ -75,9 +75,9 @@ def pr_put_request(review_id):
     kwargs = request.get_json()
     if not kwargs:
         abort(400, 'Not a JSON')
-    review = kwargs['review_id']
+    """review = kwargs['review_id']
     if review not in storage.get(Review.__name__, review_id):
-        abort(404)
+        abort(404)"""
     for k, v in kwargs.items():
         if k != 'id' and k != 'user_id' and k != 'place_id'\
                 and k != 'created_at' and k != 'updated_at':
