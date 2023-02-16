@@ -58,9 +58,7 @@ def pr_post_request(place_id):
     user_id = kwargs['user_id']
     if not storage.get(User.__name__, user_id):
         abort(404)
-    place = kwargs['place_id']
-    if place not in storage.get(Place.__name__, place_id):
-        abort(404)
+
     reviews = Review(**kwargs)
     setattr(reviews, 'place_id', place_id)
     storage.new(reviews)
