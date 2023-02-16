@@ -21,7 +21,7 @@ classes = {"Amenity": Amenity, "City": City,
 
 
 class DBStorage:
-    """interaacts with the MySQL database"""
+    """interacts with the MySQL database"""
     __engine = None
     __session = None
 
@@ -75,11 +75,11 @@ class DBStorage:
         """call remove() method on the private session attribute"""
         self.__session.remove()
 
-    def get(self, cls, id):
+    def get(self, cls, cls_id):
         """ A method to retrieve one object """
         objects = self.__session.query(classes[cls])
         for obj in objects:
-            if obj.id == id:
+            if obj.id == cls_id:
                 return obj
         return None
 
