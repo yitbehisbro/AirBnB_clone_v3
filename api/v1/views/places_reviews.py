@@ -41,7 +41,7 @@ def pr_delete_by_id(review_id):
         abort(404)
     review.delete()
     storage.save()
-    return make_response(jsonify({}), 200)
+    return jsonify({}), 200
 
 
 @app_views.route('/places/<place_id>/reviews', methods=['POST'],
