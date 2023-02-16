@@ -37,8 +37,8 @@ def pr_display_by_id(review_id):
 def pr_delete_by_id(review_id):
     """ Deletes a 'class' object """
     review = storage.get(Review.__name__, review_id)
-    """if not review:
-        abort(404)"""
+    if not review:
+        abort(404)
     review.delete()
     storage.save()
     return jsonify({}), 200
