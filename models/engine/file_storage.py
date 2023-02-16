@@ -44,7 +44,7 @@ class FileStorage:
         """serializes __objects to the JSON file (path: __file_path)"""
         json_objects = {}
         for key in self.__objects:
-            json_objects[key] = self.__objects[key].to_dict()
+            json_objects[key] = self.__objects[key].to_dict(dump="Yes")
         with open(self.__file_path, 'w') as f:
             json.dump(json_objects, f)
 
@@ -70,14 +70,20 @@ class FileStorage:
         self.reload()
 
     def get(self, cls, id):
-        """ A method to retrieve one object """
-        get_key = str(cls) + "." + str(id)
-        if get_key in self.__objects.keys():
-            return self.__objects[get_key]
+        """
+        Returns the object based on the class name and its ID, or None if not
+        found
+        """
+        key = "{}.{}".format(cls, id)
+        if key in self.__objects.keys():
+            return self.__objects[key]
         return None
 
     def count(self, cls=None):
-        """ A method to count the number of objects in storage """
+        """
+        Returns the number of objects in storage matching the given class name.
+        If no name is passed, returns the count of all objects in storage.
+        """
         if cls:
             counter = 0
             for obj in self.__objects.values():
