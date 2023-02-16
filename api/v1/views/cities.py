@@ -53,6 +53,9 @@ def post_request1(state_id):
         abort(400, 'Missing name')
 
     get_city = City(**kwargs)
+    state = storage.get(State.__init__, state_id)
+    if not state:
+        abort(404)
     setattr(get_city, 'state_id', state_id)
     storage.new(get_city)
     storage.save()
