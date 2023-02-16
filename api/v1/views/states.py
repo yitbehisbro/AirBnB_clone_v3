@@ -25,7 +25,8 @@ def display_by_id(state_id):
     return jsonify(get_state.to_dict())
 
 
-@app_views.route('/states/<state_id>', methods=['DELETE'], strict_slashes=False)
+@app_views.route('/states/<state_id>', methods=['DELETE'],
+                 strict_slashes=False)
 def delete_by_id(state_id):
     """ Deletes a 'class' object """
     get_state = storage.get(State.__name__, state_id)

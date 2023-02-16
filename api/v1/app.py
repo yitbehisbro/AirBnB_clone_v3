@@ -10,10 +10,12 @@ from flask import jsonify
 app = Flask(__name__)
 app.register_blueprint(app_views)
 
+
 @app.teardown_appcontext
 def teardown_db(exception):
     """ Tear down method """
     storage.close()
+
 
 @app.errorhandler(404)
 def not_found(error):

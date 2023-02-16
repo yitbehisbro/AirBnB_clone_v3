@@ -16,7 +16,8 @@ def a_display():
     return jsonify([amenity.to_dict() for amenity in all_amenity.values()])
 
 
-@app_views.route('/amenities/<amenity_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/amenities/<amenity_id>', methods=['GET'],
+                 strict_slashes=False)
 def a_display_by_id(amenity_id):
     """ Retrieves the list of a class objects """
     get_amenity = storage.get(Amenity.__name__, amenity_id)
@@ -25,7 +26,8 @@ def a_display_by_id(amenity_id):
     return jsonify(get_amenity.to_dict())
 
 
-@app_views.route('/amenities/<amenity_id>', methods=['DELETE'], strict_slashes=False)
+@app_views.route('/amenities/<amenity_id>', methods=['DELETE'],
+                 strict_slashes=False)
 def a_delete_by_id(amenity_id):
     """ Deletes a 'class' object """
     get_amenity = storage.get(Amenity.__name__, amenity_id)
@@ -51,7 +53,8 @@ def a_post_request():
     return jsonify(get_amenity.to_dict()), 201
 
 
-@app_views.route('/amenities/<amenity_id>', methods=['PUT'], strict_slashes=False)
+@app_views.route('/amenities/<amenity_id>', methods=['PUT'],
+                 strict_slashes=False)
 def a_put_request(amenity_id):
     """ Puts a 'class' object """
     get_amenity = storage.get(Amenity.__name__, amenity_id)

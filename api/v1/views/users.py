@@ -62,7 +62,8 @@ def u_put_request(user_id):
     if not kwargs:
         abort(400, 'Not a JSON')
     for k, v in kwargs.items():
-        if k != 'id' and k != email and k != 'created_at' and k != 'updated_at':
+        if k != 'id' and k != email and k != 'created_at'\
+                and k != 'updated_at':
             setattr(get_user, k, v)
     storage.save()
     return jsonify(get_user.to_dict()), 200

@@ -10,7 +10,8 @@ from flask import abort
 from flask import request
 
 
-@app_views.route('/cities/<city_id>', methods=['GET'], strict_slashes=False)
+@app_views.route('/cities/<city_id>', methods=['GET'],
+                 strict_slashes=False)
 def get_cities(city_id):
     """ Retrieves the list of all 'class' objects"""
     city = storage.get(City.__name__, city_id)
@@ -19,7 +20,8 @@ def get_cities(city_id):
     return jsonify(city.to_dict())
 
 
-@app_views.route('/states/<state_id>/cities', methods=['GET'], strict_slashes=False)
+@app_views.route('/states/<state_id>/cities', methods=['GET'],
+                 strict_slashes=False)
 def display_by_id1(state_id):
     """ Retrieves the list of a class objects """
     get_state = storage.get(State.__name__, state_id)
@@ -28,7 +30,8 @@ def display_by_id1(state_id):
     return jsonify([state.to_dict() for state in get_state.cities])
 
 
-@app_views.route('/cities/<city_id>', methods=['DELETE'], strict_slashes=False)
+@app_views.route('/cities/<city_id>', methods=['DELETE'],
+                 strict_slashes=False)
 def delete_by_id1(city_id):
     """ Deletes a 'class' object """
     get_city = storage.get(City.__name__, city_id)
@@ -40,7 +43,8 @@ def delete_by_id1(city_id):
     return make_response(jsonify({}), 200)
 
 
-@app_views.route('/states/<state_id>/cities', methods=['POST'], strict_slashes=False)
+@app_views.route('/states/<state_id>/cities', methods=['POST'],
+                 strict_slashes=False)
 def post_request1(state_id):
     """ Posts a 'class' object """
     kwargs = request.get_json()
@@ -56,7 +60,8 @@ def post_request1(state_id):
     return jsonify(get_city.to_dict()), 201
 
 
-@app_views.route('/cities/<city_id>', methods=['PUT'], strict_slashes=False)
+@app_views.route('/cities/<city_id>', methods=['PUT'],
+                 strict_slashes=False)
 def put_request1(city_id):
     """ Puts a 'class' object """
     get_city = storage.get(City.__name__, city_id)
