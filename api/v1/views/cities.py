@@ -40,7 +40,7 @@ def delete_by_id1(city_id):
 
     get_city.delete()
     storage.save()
-    return make_response(jsonify({}), 200)
+    return jsonify({}), 200
 
 
 @app_views.route('/states/<state_id>/cities', methods=['POST'],
