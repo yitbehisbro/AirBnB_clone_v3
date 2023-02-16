@@ -48,6 +48,9 @@ def pr_delete_by_id(review_id):
                  strict_slashes=False)
 def pr_post_request(place_id):
     """ Posts a 'class' object """
+    place = storage.get("Place", place_id)
+    if not place:
+        abort(404)
     kwargs = request.get_json()
     if not kwargs:
         abort(400, 'Not a JSON')
