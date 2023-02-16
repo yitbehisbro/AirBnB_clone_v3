@@ -24,6 +24,9 @@ class FileStorage:
     # dictionary - empty but will store all objects by <class name>.id
     __objects = {}
 
+    def __init__(self):
+        self._FileStorage__objects = None
+
     def all(self, cls=None):
         """returns the dictionary __objects"""
         if cls is not None:
