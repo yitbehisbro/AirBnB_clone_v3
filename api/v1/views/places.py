@@ -7,7 +7,6 @@ from api.v1.views.__init__ import app_views
 from flask import jsonify
 from flask import abort
 from flask import request
-
 from models.user import User
 
 
@@ -54,9 +53,9 @@ def p_post_request(city_id):
         abort(400, 'Missing name')
     if 'user_id' not in kwargs:
         abort(400, 'Missing user_id')
-    user_id = kwargs['user_id']
+    """user_id = kwargs['user_id']
     if not storage.get(User.__name__, user_id):
-        abort(404)
+        abort(404)"""
     get_places = Place(**kwargs)
     setattr(get_places, 'city_id', city_id)
     storage.new(get_places)
