@@ -35,7 +35,7 @@ def a_delete_by_id(amenity_id):
         abort(404)
     get_amenity.delete()
     storage.save()
-    return make_response(jsonify({}), 200)
+    return jsonify({}), 200
 
 
 @app_views.route('/amenities', methods=['POST'], strict_slashes=False)
