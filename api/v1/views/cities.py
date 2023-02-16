@@ -46,6 +46,9 @@ def delete_by_id1(city_id):
                  strict_slashes=False)
 def post_request1(state_id):
     """ Posts a 'class' object """
+    state = storage.get(State.__init__, state_id)
+    if not state:
+        abort(404)
     kwargs = request.get_json()
     if not kwargs:
         abort(400, 'Not a JSON')
@@ -53,9 +56,6 @@ def post_request1(state_id):
         abort(400, 'Missing name')
 
     get_city = City(**kwargs)
-    state = storage.get(State.__init__, state_id)
-    if not state:
-        abort(404)
     setattr(get_city, 'state_id', state_id)
     storage.new(get_city)
     storage.save()
