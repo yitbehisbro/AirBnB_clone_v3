@@ -33,7 +33,7 @@ def u_delete_by_id(user_id):
         abort(404)
     get_user.delete()
     storage.save()
-    return make_response(jsonify({}), 200)
+    return jsonify({}), 200
 
 
 @app_views.route('/users', methods=['POST'], strict_slashes=False)
@@ -62,7 +62,7 @@ def u_put_request(user_id):
     if not kwargs:
         abort(400, 'Not a JSON')
     for k, v in kwargs.items():
-        if k != 'id' and k != email and k != 'created_at'\
+        if k != 'id' and k != 'email' and k != 'created_at'\
                 and k != 'updated_at':
             setattr(get_user, k, v)
     storage.save()
