@@ -3,7 +3,6 @@
 from models.city import City
 from models.state import State
 from models import storage
-from models.base_model import BaseModel
 from api.v1.views.__init__ import app_views
 from flask import jsonify
 from flask import abort
@@ -71,7 +70,8 @@ def put_request1(city_id):
     if not kwargs:
         abort(400, 'Not a JSON')
     for k, v in kwargs.items():
-        if k != 'id' and k != 'state_id' and k != 'created_at' and k != 'updated_at':
+        if k != 'id' and k != 'state_id'\
+                and k != 'created_at' and k != 'updated_at':
             setattr(get_city, k, v)
     storage.save()
     return jsonify(get_city.to_dict()), 200
