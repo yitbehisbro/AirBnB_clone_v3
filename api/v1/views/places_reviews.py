@@ -55,9 +55,9 @@ def pr_post_request(place_id):
         abort(400, 'Missing text')
     if 'user_id' not in kwargs:
         abort(400, 'Missing user_id')
-    """user_id = kwargs['user_id']
+    user_id = kwargs['user_id']
     if not storage.get(User.__name__, user_id):
-        abort(404)"""
+        abort(404)
     reviews = Review(**kwargs)
     setattr(reviews, 'place_id', place_id)
     storage.new(reviews)
